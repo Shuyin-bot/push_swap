@@ -48,13 +48,3 @@ t_node *pop_bot(t_stack *stack){
 	new_bot->next = NULL;
 	return removed;
 	}
-
-void rb_base(t_stack *b, bool print) {
-	t_node *first_node = pop_top(b);
-	if (!first_node ||first_node->next == NULL){
-		return;
-	}
-	push_bot(b, first_node);
-	if (print)
-		printf("rb\n");
-}

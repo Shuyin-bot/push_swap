@@ -28,9 +28,9 @@ void pb(t_stack *a, t_stack *b);
 void ra(t_stack *a);
 void rb(t_stack *b);
 void rr(t_stack *a, t_stack *b);
-// void rra(t_stack *stack);
-// void rrb(t_stack *stack);
-// void rrr(t_stack *stack);
+void rra(t_stack *stack);
+void rrb(t_stack *stack);
+void rrr(t_stack *stack);
 
 int main(int ac, char *av[]);
 

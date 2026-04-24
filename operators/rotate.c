@@ -20,6 +20,16 @@ void ra(t_stack *a) {
 	printf("ra\n");
 }
 
+void rb_base(t_stack *b, bool print) {
+	t_node *first_node = pop_top(b);
+	if (!first_node ||first_node->next == NULL){
+		return;
+	}
+	push_bot(b, first_node);
+	if (print)
+		printf("rb\n");
+}
+
 // rb (rotate b): Shift up all elements of stack b by 1.
 // The first element becomes the last one.
 void rb(t_stack *b) {

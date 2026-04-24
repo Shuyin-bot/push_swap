@@ -1,9 +1,8 @@
 /*
 TODO:
-- finish stack operations
 - implement sorting of stack A for size <= 3
 - implement turk sort
-- input parsing
+- input parsing / init
 - memory cleanup
 - unallowed functions (printf etc..)
 - norm & cleanups
