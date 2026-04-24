@@ -12,12 +12,16 @@ typedef struct s_node t_node;
 
 typedef struct s_node {
 	t_node *next;
+	int	index;
 	int data;
 } t_node;
 
 typedef struct s_stack {
 	t_node *top;
+	int		size;
 } t_stack;
+
+// void update_size_index(t_stack *stack);
 
 //operators
 void sa(t_stack *a);
@@ -30,9 +34,14 @@ void rb(t_stack *b);
 void rr(t_stack *a, t_stack *b);
 void rra(t_stack *stack);
 void rrb(t_stack *stack);
-void rrr(t_stack *stack);
+void rrr(t_stack *a, t_stack *b);
+
 
 int main(int ac, char *av[]);
+
+//init
+t_stack *init(int ac, char *av[]);
+t_stack *new_empty_stack(void);
 
 void push_top(t_stack *stack, t_node *node);
 void push_bot(t_stack *stack, t_node *node);

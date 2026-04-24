@@ -15,12 +15,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC =	main.c \
 		test.c \
-		utility.c \
+		init.c \
 		operators/push.c \
 		operators/rev_rotate.c \
 		operators/rotate.c \
 		operators/swap.c \
 		operators/utility.c \
+
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 

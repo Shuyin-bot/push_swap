@@ -2,8 +2,9 @@
 TODO:
 - implement sorting of stack A for size <= 3
 - implement turk sort
-- input parsing / init
+- input validation
 - memory cleanup
+- malloc error
 - unallowed functions (printf etc..)
 - norm & cleanups
 (-testing of stack operations)
@@ -13,8 +14,9 @@ TODO:
 
 int main(int ac, char *av[])
 {
+    t_stack *a = init(ac, av);
 	//test_push_bot();
-	test_pa();
+	//test_pa();
 	// t_node *list = some_list();
 
 	// print_list(list);
