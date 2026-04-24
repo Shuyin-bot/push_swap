@@ -15,8 +15,12 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC =	main.c \
 		test.c \
-		utility.c
-
+		utility.c \
+		operators/push.c \
+		operators/rev_rotate.c \
+		operators/rotate.c \
+		operators/swap.c \
+		operators/utility.c \
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
@@ -43,7 +47,7 @@ $(NAME): $(OBJ)
 	@printf "$(CYAN) ✨ Compiled Successfully! $(NC)\n"
 
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
