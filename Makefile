@@ -14,6 +14,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 # **************************************************************************** #
 
 SRC =	main.c \
+		test.c \
+		utility.c
 
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 typedef struct s_node t_node;
 
@@ -17,5 +19,26 @@ typedef struct s_stack {
 	t_node *top;
 } t_stack;
 
+//operators
+void sa(t_stack *a);
+void sb(t_stack *b);
+void ss(t_stack *a, t_stack *b);
+void pa(t_stack *a, t_stack *b);
+void pb(t_stack *a, t_stack *b);
+void ra(t_stack *a);
+void rb(t_stack *b);
+void rr(t_stack *a, t_stack *b);
+// void rra(t_stack *stack);
+// void rrb(t_stack *stack);
+// void rrr(t_stack *stack);
+
+int main(int ac, char *av[]);
+
+void push_top(t_stack *stack, t_node *node);
+void push_bot(t_stack *stack, t_node *node);
+t_node *pop_top(t_stack *stack);
+t_node *pop_bot(t_stack *stack);
+void rb_base(t_stack *b, bool print);
+void test_pa();
 
 #endif
