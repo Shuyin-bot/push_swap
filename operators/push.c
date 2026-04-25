@@ -8,6 +8,8 @@ void pa(t_stack *a, t_stack *b){
 		return ;
 	node = pop_top(b);
 	push_top(a, node);
+	update_size_index(a);
+	update_size_index(b);
 	printf("pa\n");
 }
 
@@ -19,5 +21,7 @@ void pb(t_stack *a, t_stack *b){
 		return ;
 	node = pop_top(a);
 	push_top(b, node);
+	update_size_index(a);
+	update_size_index(b);
 	printf("pb\n");
 }

@@ -9,6 +9,7 @@ void rra(t_stack *a) {
 	{
 		node = pop_bot(a);
 		push_top(a, node);
+		update_size_index(a);
 		printf("rra\n");
 	}
 	return ;
@@ -22,7 +23,10 @@ void rrb_base(t_stack *b, bool print)
 		node = pop_bot(b);
 		push_top(b, node);
 		if (print)
+		{
+			update_size_index(b);
 			printf("rrb\n");
+		}
 	}
 	return ;
 }
@@ -37,5 +41,7 @@ void rrb(t_stack *b) {
 void rrr(t_stack *a, t_stack *b) {
 	rrb_base(a, 0);
 	rrb_base(b, 0);
+	update_size_index(a);
+	update_size_index(b);
 	printf("rrr\n");
 }

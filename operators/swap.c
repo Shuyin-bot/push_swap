@@ -13,6 +13,8 @@ void sa(t_stack *a) {
 	list->data = list->next->data;
 	list->next->data = temp1;
 	printf("sa\n");
+	update_size_index(a);
+
 }
 
 // sb (swap b): Swap the first 2 elements at the top of stack b->
@@ -29,6 +31,7 @@ void sb(t_stack *b) {
 	list->data = list->next->data;
 	list->next->data = temp1;
 	printf("sb\n");
+	update_size_index(b);
 }
 
 // ss : sa and sb at the same time.
@@ -52,4 +55,6 @@ void ss(t_stack *a, t_stack *b) {
 	}
 	if (swap_a || swap_b)
 		printf("ss\n");
+	update_size_index(a);
+	update_size_index(b);
 }

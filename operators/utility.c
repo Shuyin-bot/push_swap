@@ -48,3 +48,17 @@ t_node *pop_bot(t_stack *stack){
 	new_bot->next = NULL;
 	return removed;
 	}
+
+void update_size_index(t_stack *stack)
+{
+	t_node  *node = stack->top;
+	int     cur_index = 0;
+	
+	while (stack && node)
+	{
+		node->index = cur_index;
+		node = node -> next;
+		cur_index++;
+	}
+	stack->size = cur_index;
+}

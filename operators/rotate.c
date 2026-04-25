@@ -17,6 +17,7 @@ void ra(t_stack *a) {
 		return;
 	}
 	push_bot(a, first_node);
+	update_size_index(a);
 	printf("ra\n");
 }
 
@@ -34,6 +35,7 @@ void rb_base(t_stack *b, bool print) {
 // The first element becomes the last one.
 void rb(t_stack *b) {
 	rb_base(b, true);
+	update_size_index(b);
 }
 
 // rr : ra and rb at the same time.
@@ -43,4 +45,6 @@ void rr(t_stack *a, t_stack *b) {
 	rb_base(a, false);
 	rb_base(b, false);
 	printf("rr\n");
+	update_size_index(a);
+	update_size_index(b);
 }

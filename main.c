@@ -12,9 +12,36 @@ TODO:
 
 #include <push_swap.h>
 
+
+int ft_stacklen(t_stack *stack)
+{
+	int len = 0;
+	t_node  *node = stack->top;
+	while (stack && node)
+	{
+		len++;
+		node = node->next;
+	}
+	return (len);
+}
+
 int main(int ac, char *av[])
 {
-    t_stack *a = init(ac, av);
+	t_stack *a = init(ac, av);
+	t_stack *b = new_empty_stack();
+	while (a->size > 3)
+	{
+		pb(a,b);
+
+	}
+
+	while (b)
+	{
+		//do smth
+	}
+	
+	
+	
 	//test_push_bot();
 	//test_pa();
 	// t_node *list = some_list();

@@ -21,7 +21,7 @@ typedef struct s_stack {
 	int		size;
 } t_stack;
 
-// void update_size_index(t_stack *stack);
+void update_size_index(t_stack *stack);
 
 //operators
 void sa(t_stack *a);
