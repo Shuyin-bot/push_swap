@@ -12,18 +12,67 @@ TODO:
 
 #include <push_swap.h>
 
-
-int ft_stacklen(t_stack *stack)
+void sort_3_or_less(t_stack *a)
 {
-	int len = 0;
-	t_node  *node = stack->top;
-	while (stack && node)
-	{
-		len++;
-		node = node->next;
+	t_node	*node1 = a->top;
+	
+	if (a->size == 1 || a->size == 0) {
+		return ;
 	}
-	return (len);
+	else if (a->size == 2)
+	{
+		t_node	*node2 = node1->next;
+		if(node1->data > node2->data)
+			sa(a);
+		return ;
+	}
+	else
+	{
+		t_node	*node2 = node1->next;
+		t_node	*node3 = node2->next;
+		while (node1->data > node2->data)
+		{
+			sa(a);
+			if(node1->data > node3->data)
+			{
+				ra(a);
+				return;
+			}
+			if(node2->data > node3->data)
+			{
+				ra(a);
+				// print_stack(a);
+				sa(a);
+				return;
+			}
+			else
+				return;
+		}
+		while (node1->data <= node2->data)
+		{
+			if(node1->data > node3->data)
+			{
+				ra(a);
+				return;
+			}
+			if(node2->data > node3->data)
+			{
+				ra(a);
+				sa(a);
+				return;
+			}
+			else
+				return;
+		}
+	}
 }
+
+// 1 2 3
+// 1 3 2
+// 2 1 3
+// 2 3 1
+// 3 1 2
+// 3 2 1
 
 int main(int ac, char *av[])
 {
@@ -34,11 +83,14 @@ int main(int ac, char *av[])
 		pb(a,b);
 
 	}
+	sort_3_or_less(a);
+	print_stack(a);
 
-	while (b)
-	{
-		//do smth
-	}
+
+	// while (b)
+	// {
+	// 	//do smth
+	// }
 	
 	
 	

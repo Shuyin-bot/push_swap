@@ -49,5 +49,5 @@ t_node *pop_top(t_stack *stack);
 t_node *pop_bot(t_stack *stack);
 void rb_base(t_stack *b, bool print);
 void test_pa();
-
+void print_stack(t_stack *stack);
 #endif

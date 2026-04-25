@@ -4,44 +4,50 @@
 //The last element becomes the first one.
 //  a->top->next!= 0 same as  (*a).top->next!= 0
 void rra(t_stack *a) {
-	t_node  *node;
-	if (a && a->top && a->top->next!= 0)
-	{
-		node = pop_bot(a);
-		push_top(a, node);
-		update_size_index(a);
-		printf("rra\n");
+	t_node *first_node = pop_top(a);
+	
+	// int arr[2] = {1,2};
+	// int *ptr = arr;
+	// ptr[1];
+	// *(ptr + 1);
+
+	// first_node->data;
+	// *((long long*)first_node + 1);
+	
+	if (!first_node || first_node->next == NULL){
+		return;
 	}
-	return ;
+	push_bot(a, first_node);
+	update_size_index(a);
+	printf("rra\n");
+
 }
 
 void rrb_base(t_stack *b, bool print)
 {
-	t_node  *node;
-	if (b && b->top && b->top->next!= 0)
-	{
-		node = pop_bot(b);
-		push_top(b, node);
-		if (print)
-		{
-			update_size_index(b);
-			printf("rrb\n");
-		}
+	t_node *first_node = pop_top(b);
+	if (!first_node ||first_node->next == NULL){
+		return;
 	}
-	return ;
+	push_bot(b, first_node);
+	if (print)
+		printf("rrb\n");
 }
 
 // rrb (reverse rotate b): Shift down all elements of stack b by 1.
 //The last element becomes the first one.
 void rrb(t_stack *b) {
-	rrb_base(b, 1);
+	rb_base(b, true);
+	update_size_index(b);
 }
 
 // rrr : rra and rrb at the same time.
 void rrr(t_stack *a, t_stack *b) {
-	rrb_base(a, 0);
-	rrb_base(b, 0);
+	if ((!a->top||a->top->next==NULL)&&(!b->top||b->top->next==NULL))
+		return;
+	rb_base(a, false);
+	rb_base(b, false);
+	printf("rrr\n");
 	update_size_index(a);
 	update_size_index(b);
-	printf("rrr\n");
 }

@@ -37,17 +37,21 @@ t_node *pop_bot(t_stack *stack){
 	t_node *removed;
 	if (!new_bot)
 		return NULL;
-	if (!new_bot->next) {
+	if (!new_bot->next) 
+    {
 		removed = new_bot;
 		stack->top = NULL;
-		return removed;
+        return removed;
 	}
 	while (new_bot->next->next != NULL)
-		new_bot = new_bot->next;
-	removed = new_bot->next;
-	new_bot->next = NULL;
-	return removed;
+	{	
+        new_bot = new_bot->next;
+	    removed = new_bot->next;
 	}
+    new_bot->next = NULL;
+    return removed;
+
+}
 
 void update_size_index(t_stack *stack)
 {

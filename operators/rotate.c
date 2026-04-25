@@ -3,48 +3,46 @@
 // ra (rotate a): Shift up all elements of stack a by 1.
 // The first element becomes the last one.
 void ra(t_stack *a) {
-	t_node *first_node = pop_top(a);
-	
-	// int arr[2] = {1,2};
-	// int *ptr = arr;
-	// ptr[1];
-	// *(ptr + 1);
+	t_node  *node;
+	if (a && a->top && a->top->next!= 0)
+	{
+		node = pop_bot(a);
+		push_top(a, node);
 
-	// first_node->data;
-	// *((long long*)first_node + 1);
-	
-	if (!first_node || first_node->next == NULL){
-		return;
+		update_size_index(a);
+		printf("ra\n");
 	}
-	push_bot(a, first_node);
-	update_size_index(a);
-	printf("ra\n");
+	return ;
 }
 
 void rb_base(t_stack *b, bool print) {
-	t_node *first_node = pop_top(b);
-	if (!first_node ||first_node->next == NULL){
-		return;
+	t_node  *node;
+	if (b && b->top && b->top->next!= 0)
+	{
+		node = pop_bot(b);
+		push_top(b, node);
+		if (print)
+		{
+			update_size_index(b);
+			printf("rb\n");
+		}
 	}
-	push_bot(b, first_node);
-	if (print)
-		printf("rb\n");
+	return ;
 }
 
 // rb (rotate b): Shift up all elements of stack b by 1.
 // The first element becomes the last one.
 void rb(t_stack *b) {
-	rb_base(b, true);
+	rrb_base(b, 1);
 	update_size_index(b);
 }
 
 // rr : ra and rb at the same time.
 void rr(t_stack *a, t_stack *b) {
-	if ((!a->top||a->top->next==NULL)&&(!b->top||b->top->next==NULL))
-		return;
-	rb_base(a, false);
-	rb_base(b, false);
-	printf("rr\n");
+	rrb_base(a, 0);
+	rrb_base(b, 0);
 	update_size_index(a);
 	update_size_index(b);
+	printf("rr\n");
+
 }

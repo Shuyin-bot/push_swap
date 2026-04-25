@@ -3,6 +3,7 @@
 t_stack *new_empty_stack(void) {
 	t_stack *stack;
 	stack = ft_calloc(1, sizeof(t_stack));
+	update_size_index(stack);
 	return stack;
 }
 
@@ -25,5 +26,6 @@ t_stack *init(int ac, char *av[]) {
 		// todo: input validation
 		i++;
 	}
+	update_size_index(a);
 	return (a);
 }
