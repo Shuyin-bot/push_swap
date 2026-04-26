@@ -2,7 +2,7 @@ NAME = push_swap
 
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra -I.
-CFLAGS =  -I. -g
+CFLAGS =  -I. -g -fsanitize=address
 
 OBJ_DIR = obj
 
@@ -44,7 +44,7 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@printf "$(CYAN) ✨ Compiled Successfully! $(NC)\n"
 
 $(OBJ_DIR)/%.o: %.c

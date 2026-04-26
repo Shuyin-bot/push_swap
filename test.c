@@ -1,6 +1,9 @@
 #include <push_swap.h>
 
+// compare if two given stacks are equal
 bool stacks_eq(t_stack *stack_a, t_stack *stack_b) {
+	
+	// //practice comparing between arrs
 	// int arr_a[2] = {1, 2};
 	// int arr_b[2] = {1, 2};
 	// int len = 2;
@@ -11,11 +14,8 @@ bool stacks_eq(t_stack *stack_a, t_stack *stack_b) {
 	// 		return false;
 	// return true;
 
-	t_node *list_a = stack_a->top;
-	t_node *list_b = stack_b->top;
-
-	t_node	*cur_a = list_a;
-	t_node	*cur_b = list_b;
+	t_node	*cur_a = stack_a->top;
+	t_node	*cur_b = stack_b->top;
 
 	while (cur_a && cur_b)
 	{
@@ -29,18 +29,35 @@ bool stacks_eq(t_stack *stack_a, t_stack *stack_b) {
 	return true;
 }
 
-void print_list(t_node *list) {
-	t_node *cur = list;
+void print_stack(t_stack *stack) {
+	t_node *cur = stack->top;
 	printf("{");
 	while (cur) {
 		printf("%d, ", cur->data);
 		cur = cur->next;
 	}
 	printf("}\n");
+	// 	t_node *cur = stack->top;
+	// 	printf("{");
+	// 	while (cur->next != NULL && cur)
+	// 	{
+	// 		printf("%d, ", cur->data);
+	// 		cur = cur->next;
+	// 	}
+	// 	cur = cur->next;
+	// 	printf("%d", cur->data);
+	// 	printf("}\n");
+	// }
 }
 
-void print_stack(t_stack *stack) {
-	print_list(stack->top);
+void print_stack_with_target_node(t_stack *a, t_stack *b) {
+	t_node *cur = b->top;
+	printf("{");
+	while (cur) {
+		printf("(%d, target: %d), ", cur->data, cur->target_in_a->data);
+		cur = cur->next;
+	}
+	printf("}\n");
 }
 
 // alloctates a node and pushes it on the stack with the given int
