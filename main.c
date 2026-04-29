@@ -4,9 +4,10 @@ TODO:
 [ ] implement turk sort
 	[*] find smallest bigger node; 
 	[*] target finder;
-		[ ] deal with the biggest node situation;
-	[ ] caculate "to top cost" with index && find the cheapest node;
-[ ]input validation
+		[*] deal with the biggest node situation;
+	[*] caculate "to top cost" with index && find the cheapest node;
+	[ ] total cost
+	[ ]input validation
 [ ]memory cleanup
 [ ]malloc error
 [ ]unallowed functions (printf etc..)
@@ -17,18 +18,24 @@ TODO:
 #include <push_swap.h>
 
 void	sort_3_or_less(t_stack *a);
+t_node	*find_smallest(t_stack *a);
 
 void	turk_sort(t_stack *a)
 {
 	int		target_int;
 	t_stack	*b;
+	t_node	*am_the_cheapest_node;
 
 	b = new_empty_stack();
 	while (a->size > 3)
 		pb(a, b);
 	sort_3_or_less(a);
 	target_node_finder(a, b);
-	print_stack_with_target_node(b);
+	get_cost(a);
+	get_cost(b);
+	get_total_cost(b);
+	am_the_cheapest_node = find_cheapest_cost_in_total(b);
+	am_the_cheapest_node->
 }
 
 void	sort_3_or_less(t_stack *a)
@@ -105,12 +112,26 @@ void	target_node_finder(t_stack *a, t_stack *b)
 	while (b && b_node_cur)
 	{
 		target_node = find_smallest_bigger(a, b_node_cur->data);
+		if (target_node == NULL)
+			b_node_cur = find_smallest(a);
 		b_node_cur->target_in_a = target_node;
 		b_node_cur = b_node_cur->next;
 	}
 }
 
-// find 
+// find the smallest node in the given stack
+t_node	*find_smallest(t_stack *a)
+{
+	t_node	*node = a->top;
+	t_node	*min = a->top;
+	while (a && node)
+	{
+		if(node->data < min->data)
+			min = node;
+		node = node->next;
+	}
+	return min;
+}
 
 t_node	*find_smallest_bigger(t_stack *a, int val)
 {
@@ -134,6 +155,71 @@ t_node	*find_smallest_bigger(t_stack *a, int val)
 		node = node->next;
 	}
 	return (min);
+}
+
+// calculate the cost to get to the top of the stack
+void	get_cost(t_stack *b)
+{
+	int	cost = b->top->cost;
+	t_node *node;
+
+	node = b->top;
+	while (b && node)
+	{
+		if (node->index <= b->size / 2)
+		{
+			cost = node->index;
+			node = node->next;
+		}
+		else
+		{
+			cost = b->size - node->index;
+			node = node->next;
+		}
+	}
+}
+
+/* calculate the total cost (cost to get to the top of the stack and 
+	cost of the target note for each node in stack b to get to the top of 
+	the stack)
+*/
+void	get_total_cost(t_stack *b)
+{
+	t_node *node;
+
+	node = b->top;
+	while (b && node)
+	{
+		node->total_cost = node->cost + node->target_in_a->cost;
+		node = node->next;
+	}
+}
+
+t_node	*find_cheapest_cost_in_total(t_stack *b)
+{
+	t_node	*node = b->top;
+	t_node	*cheapest_node = b->top;
+	while (b && node)
+	{
+		if (node->total_cost < cheapest_node->total_cost)
+			cheapest_node = node;
+		node = node->next;
+	}
+	return (cheapest_node);
+}
+
+// find the smallest node in the given stack
+t_node	*find_smallest(t_stack *a)
+{
+	t_node	*node = a->top;
+	t_node	*min = a->top;
+	while (a && node)
+	{
+		if(node->data < min->data)
+			min = node;
+		node = node->next;
+	}
+	return min;
 }
 
 int	main(int ac, char *av[])

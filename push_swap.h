@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:22:16 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/04/29 22:35:59 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_node
 	int		index;
 	int		data;
 	t_node	*target_in_a;
+	int		cost;
+	int		total_cost;
 }	t_node;
 
 typedef struct s_stack
@@ -63,6 +65,7 @@ void	rb_base(t_stack *b, bool print);
 void	rrb_base(t_stack *b, bool print);
 void	print_stack(t_stack *stack);
 void	print_stack_with_target_node(t_stack *b);
+t_node	*find_smallest(t_stack *a);
 t_node	*find_smallest_bigger(t_stack *a, int val);
 void	target_node_finder(t_stack *a, t_stack *b);
 //t_node	*target_node_finder(t_stack *a, t_stack *b);
