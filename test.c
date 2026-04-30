@@ -1,4 +1,5 @@
 #include <push_swap.h>
+#include <assert.h> //
 
 // compare if two given stacks are equal
 bool	stacks_eq(t_stack *stack_a, t_stack *stack_b)
@@ -57,6 +58,8 @@ void	print_stack_with_target_node(t_stack *b)
 			printf("(%d, target: NULL), ", cur->data);
 		else if (!cur->target_in_a && !cur->next)
 			printf("(%d, target: NULL)", cur->data);
+		else //
+			assert(0); //
 		cur = cur->next;
 	}
 	printf("}\n");

@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/29 22:35:59 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/04/30 13:27:17 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,9 @@ void	print_stack_with_target_node(t_stack *b);
 t_node	*find_smallest(t_stack *a);
 t_node	*find_smallest_bigger(t_stack *a, int val);
 void	target_node_finder(t_stack *a, t_stack *b);
+void	get_cost(t_stack *b);
+void	get_total_cost(t_stack *b);
+t_node	*find_cheapest_cost_in_total(t_stack *b);
+
 //t_node	*target_node_finder(t_stack *a, t_stack *b);
 #endif

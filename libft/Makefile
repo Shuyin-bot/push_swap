@@ -6,7 +6,7 @@
 #    By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/16 00:29:40 by sqian             #+#    #+#              #
-#    Updated: 2026/04/25 14:30:08 by qianshuyin       ###   ########.fr        #
+#    Updated: 2026/04/30 13:55:37 by qianshuyin       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,7 +109,7 @@ all: $(NAME)
 
 # Normal Objects
 $(NAME): $(OBJ)
-	ar rcs $@ $^
+	@ar rcs $@ $^
 	@printf "$(CYAN) ✨ Compiled Sucessfully! $(NC)\n"
 # rule to make the lib
 #r → replace: 替换库里同名的对象文件
@@ -118,17 +118,17 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 # rule to make o-files
 
 # Bonus
 bonus: $(OBJ) $(BOBJ)
-	ar rcs $(NAME) $^
+	@ar rcs $(NAME) $^
 
 # Debug Build
 $(DEBUG_DIR)/%.debug.o: $(SRC_DIR)/%.c
-	mkdir -p $(dir $(DEBUG_DIR))
-	$(CC) $(CFLAGS) -g -o0 -c $< -o $@
+	@mkdir -p $(dir $(DEBUG_DIR))
+	@$(CC) $(CFLAGS) -g -o0 -c $< -o $@
 #Add debug info(line number, variable name, symbol table)
 #Explicitly tell the compiler not to perform any optimizations
 

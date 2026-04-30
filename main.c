@@ -6,8 +6,12 @@ TODO:
 	[*] target finder;
 		[*] deal with the biggest node situation;
 	[*] caculate "to top cost" with index && find the cheapest node;
-	[ ] total cost
-	[ ]input validation
+	[ ] use operations to get cheapest node to the top
+	[ ] use operations to get cheapest node's target_node to the top
+
+[ ] get cheapest node to a
+[ ] some kind of loop?
+[ ]input validation
 [ ]memory cleanup
 [ ]malloc error
 [ ]unallowed functions (printf etc..)
@@ -16,6 +20,7 @@ TODO:
 */
 
 #include <push_swap.h>
+#include <assert.h> //
 
 void	sort_3_or_less(t_stack *a);
 t_node	*find_smallest(t_stack *a);
@@ -25,17 +30,47 @@ void	turk_sort(t_stack *a)
 	int		target_int;
 	t_stack	*b;
 	t_node	*am_the_cheapest_node;
+	int		index_compare;
 
 	b = new_empty_stack();
+	index_compare = 0;
 	while (a->size > 3)
 		pb(a, b);
+	printf("a after pb: ");
+	print_stack(a);
 	sort_3_or_less(a);
+	printf("a after sort 3: "); print_stack(a);
+	printf("b after a sort 3: "); print_stack(b);
+
 	target_node_finder(a, b);
 	get_cost(a);
 	get_cost(b);
 	get_total_cost(b);
 	am_the_cheapest_node = find_cheapest_cost_in_total(b);
-	am_the_cheapest_node->
+	while (am_the_cheapest_node->index != 0)
+	{
+		if (am_the_cheapest_node->index <= b->size / 2)
+		{
+			//while (index_compare < am_the_cheapest_node->index)
+			{
+				rrb(b);
+				index_compare++;
+			}
+		}
+		else
+		{
+			//while (index_compare < am_the_cheapest_node->index)
+			{
+				rb(b);
+				index_compare++;
+			}
+		}
+	}
+	printf("b after rotate b(target node should be on top): ");
+	print_stack_with_target_node(b);
+	// while ()
+	// {
+	// }
 }
 
 void	sort_3_or_less(t_stack *a)
@@ -45,13 +80,13 @@ void	sort_3_or_less(t_stack *a)
 	t_node	*node3;
 
 	node1 = a->top;
+	node2 = node1->next;
 	if (a->size == 1 || a->size == 0)
 	{
 		return ;
 	}
 	else if (a->size == 2)
 	{
-		node2 = node1->next;
 		if (node1->data > node2->data)
 			sa(a);
 		return ;
@@ -113,23 +148,28 @@ void	target_node_finder(t_stack *a, t_stack *b)
 	{
 		target_node = find_smallest_bigger(a, b_node_cur->data);
 		if (target_node == NULL)
-			b_node_cur = find_smallest(a);
+			target_node = find_smallest(a);
+		printf("target_node data: %d\n ", target_node->data);
+		printf("b_node_cur data: %d\n", b_node_cur->data);
+		assert(target_node);
 		b_node_cur->target_in_a = target_node;
 		b_node_cur = b_node_cur->next;
 	}
 }
 
-// find the smallest node in the given stack
+// find the first smallest node in the given stack
 t_node	*find_smallest(t_stack *a)
 {
 	t_node	*node = a->top;
 	t_node	*min = a->top;
+	assert(a->top);
 	while (a && node)
 	{
 		if(node->data < min->data)
 			min = node;
 		node = node->next;
 	}
+	assert(min);
 	return min;
 }
 
@@ -140,7 +180,8 @@ t_node	*find_smallest_bigger(t_stack *a, int val)
 	t_node	*empty;
 
 	node = a->top;
-	min = a->top;
+	min = NULL;
+	empty = a->top;
 	while (empty && empty->data < val)
 		empty = empty->next;
 	if (!empty)
@@ -149,11 +190,12 @@ t_node	*find_smallest_bigger(t_stack *a, int val)
 	{
 		if (node->data > val)
 		{
-			if (node->data < min->data)
-				min = node;	
+			if (!min || node->data < min->data)
+				min = node;
 		}
 		node = node->next;
 	}
+	printf("val: %d, min: %d\n", val, min->data);
 	return (min);
 }
 
@@ -190,6 +232,7 @@ void	get_total_cost(t_stack *b)
 	node = b->top;
 	while (b && node)
 	{
+		assert(node->target_in_a);
 		node->total_cost = node->cost + node->target_in_a->cost;
 		node = node->next;
 	}
@@ -208,29 +251,11 @@ t_node	*find_cheapest_cost_in_total(t_stack *b)
 	return (cheapest_node);
 }
 
-// find the smallest node in the given stack
-t_node	*find_smallest(t_stack *a)
-{
-	t_node	*node = a->top;
-	t_node	*min = a->top;
-	while (a && node)
-	{
-		if(node->data < min->data)
-			min = node;
-		node = node->next;
-	}
-	return min;
-}
-
 int	main(int ac, char *av[])
 {
 	t_stack *a = init(ac, av);
-	// t_stack	*b = new_empty_stack();
-	// t_node	*smallest_bigger;
-	// int		*target_int;
-	// int		val = 5;
-	// smallest_bigger = find_smallest_bigger(a, val);
-	// printf("smalllest bigger: %d\n", smallest_bigger->data);
+
+
 	
 	turk_sort(a);
 	print_stack(a);
