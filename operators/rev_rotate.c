@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:23:21 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:25:22 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/04/30 19:40:40 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rra(t_stack *a)
 	// first_node->data;
 	// *((long long*)first_node + 1);
 	first_node = pop_top(a);
-	if (!first_node || first_node->next == NULL){
+	if (!first_node){
 		return ;
 	}
 	push_bot(a, first_node);

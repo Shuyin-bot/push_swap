@@ -41,33 +41,60 @@ void	turk_sort(t_stack *a)
 	sort_3_or_less(a);
 	printf("a after sort 3: "); print_stack(a);
 	printf("b after a sort 3: "); print_stack(b);
-
+	while (b->size)
+{
 	target_node_finder(a, b);
 	get_cost(a);
 	get_cost(b);
 	get_total_cost(b);
+	printf("after get_costs\n");
 	am_the_cheapest_node = find_cheapest_cost_in_total(b);
 	while (am_the_cheapest_node->index != 0)
 	{
 		if (am_the_cheapest_node->index <= b->size / 2)
 		{
-			//while (index_compare < am_the_cheapest_node->index)
-			{
-				rrb(b);
-				index_compare++;
-			}
+			rrb(b);
 		}
 		else
 		{
-			//while (index_compare < am_the_cheapest_node->index)
-			{
-				rb(b);
-				index_compare++;
-			}
+			rb(b);
 		}
+		printf("b idx: %d\n", am_the_cheapest_node->index);
+	}
+	print_stack(a);
+	while (am_the_cheapest_node->target_in_a->index != 0)
+	{
+		if (am_the_cheapest_node->index <= b->size / 2)
+		{
+			rra(a);
+		}
+		else
+		{
+			ra(a);
+		}
+		// print_stack(a);
+		// printf("a idx: %d\n", am_the_cheapest_node->target_in_a->index);
 	}
 	printf("b after rotate b(target node should be on top): ");
+	print_stack_with_target_node(a);
 	print_stack_with_target_node(b);
+	pa(a, b);
+}
+	t_node *smallest = find_smallest(a);
+	if (smallest->index < a->size / 2)
+	{
+		while (smallest->index)
+			rra(a);
+	}
+	else
+	{
+		while (smallest->index)
+			ra(a);	
+	}
+	printf("end");
+	print_stack_with_target_node(a);
+	print_stack_with_target_node(b);
+
 	// while ()
 	// {
 	// }
@@ -149,12 +176,13 @@ void	target_node_finder(t_stack *a, t_stack *b)
 		target_node = find_smallest_bigger(a, b_node_cur->data);
 		if (target_node == NULL)
 			target_node = find_smallest(a);
-		printf("target_node data: %d\n ", target_node->data);
-		printf("b_node_cur data: %d\n", b_node_cur->data);
+		printf("target: %d\n ", target_node->data);
+		printf("b node: %d\n", b_node_cur->data);
 		assert(target_node);
 		b_node_cur->target_in_a = target_node;
 		b_node_cur = b_node_cur->next;
 	}
+	printf("fin target node finder\n");
 }
 
 // find the first smallest node in the given stack
@@ -248,6 +276,7 @@ t_node	*find_cheapest_cost_in_total(t_stack *b)
 			cheapest_node = node;
 		node = node->next;
 	}
+	printf("fin find_cheapest_cost_in_total\n");
 	return (cheapest_node);
 }
 
