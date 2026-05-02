@@ -2,3 +2,5 @@ obj
 push_swap
 for_practice.c
 *.a
+push_swap_visualizer
+text.txt

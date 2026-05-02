@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:23:21 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/30 19:40:40 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/02 21:47:50 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,12 @@
 void	rra(t_stack *a)
 {
 	t_node	*first_node;
-	// int arr[2] = {1,2};
-	// int *ptr = arr;
-	// ptr[1];
-	// *(ptr + 1);
-	
-	// first_node->data;
-	// *((long long*)first_node + 1);
-	first_node = pop_top(a);
+
+	first_node = pop_bot(a);
 	if (!first_node){
 		return ;
 	}
-	push_bot(a, first_node);
+	push_top(a, first_node);
 	update_size_index(a);
 	printf("rra\n");
 }
@@ -52,7 +46,7 @@ void	rrb_base(t_stack *b, bool print)
 //The last element becomes the first one.
 void	rrb(t_stack *b)
 {
-	rb_base(b, true);
+	rrb_base(b, true);
 	update_size_index(b);
 }
 
@@ -61,8 +55,8 @@ void	rrr(t_stack *a, t_stack *b)
 {
 	if ((!a->top || a->top->next == NULL) && (!b->top || b->top->next == NULL))
 		return ;
-	rb_base(a, false);
-	rb_base(b, false);
+	rrb_base(a, false);
+	rrb_base(b, false);
 	printf("rrr\n");
 	update_size_index(a);
 	update_size_index(b);

@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/30 13:27:17 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/02 21:26:46 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdint.h>
+#include <assert.h> //
 
 typedef struct s_node	t_node;
 

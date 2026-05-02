@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:32:35 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:21:34 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/02 19:37:51 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_stack	*init(int ac, char *av[])
 	{
 		val = ft_atoi(av[i]);
 		push_int(a, val);
-		// todo: input validation
 		i++;
 	}
 	update_size_index(a);

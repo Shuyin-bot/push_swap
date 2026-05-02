@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:38:22 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:38:23 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/02 19:50:37 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,4 @@ t_node	*pop_bot(t_stack *stack)
 	}
 	new_bot->next = NULL;
 	return (removed);
-}
-
-void	update_size_index(t_stack *stack)
-{
-	t_node	*node;
-	int		cur_index;
-
-	node = stack->top;
-	cur_index = 0;
-	while (stack && node)
-	{
-		node->index = cur_index;
-		node = node -> next;
-		cur_index++;
-	}
-	stack->size = cur_index;
 }
