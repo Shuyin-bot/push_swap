@@ -43,61 +43,26 @@ void	free_stack(t_stack *s)
 	free(s);
 }
 
-void	turk_sort(t_stack *a)
+t_stack *init_turk_sort(t_stack *a)
 {
-	int		target_int;
-	t_stack	*b;
-	t_node	*am_the_cheapest_node;
-	t_node	*smallest;
-	int		index_compare;
+	t_stack *b;
 
 	b = new_empty_stack();
 	if (!b)
 	{
 		printf("Error\n");
-		return ;
+		return NULL;
 	}
-	index_compare = 0;
-	while (a->size > 3)
+	while (a->size > 3 && !is_sorted(a))
 		pb(a, b);
 	sort_3_or_less(a);
-	while (b->size)
-	{
-		target_node_finder(a, b);
-		get_cost(a);
-		get_cost(b);
-		get_total_cost(b);
-		am_the_cheapest_node = find_cheapest_cost_in_total(b);
-		while (am_the_cheapest_node->index != 0)
-		{
-			if (am_the_cheapest_node->index <= b->size / 2)
-			{
-				if (am_the_cheapest_node->target_in_a->index <= a->size / 2 && am_the_cheapest_node->target_in_a->index != 0)
-					rr(a, b);
-				else
-					rb(b);
-			}
-			else
-			{
-				if (am_the_cheapest_node->target_in_a->index > a->size / 2)
-					rrr(a, b);
-				else
-					rrb(b);
-			}
-		}
-		while (am_the_cheapest_node->target_in_a->index != 0)
-		{
-			if (am_the_cheapest_node->target_in_a->index <= a->size / 2)
-			{
-				ra(a);
-			}
-			else
-			{
-				rra(a);
-			}
-		}
-		pa(a, b);
-	}
+	return b;
+}
+
+void finish_turk_sort(t_stack *a, t_stack *b)
+{
+	t_node	*smallest;
+
 	smallest = find_smallest(a);
 	if (smallest->index < a->size / 2)
 	{
@@ -110,6 +75,57 @@ void	turk_sort(t_stack *a)
 			rra(a);
 	}
 	free_stack(b);
+}
+
+void turk_sort_rotate_b(t_stack *a, t_stack *b, t_node *am_the_cheapest_node)
+{
+	while (am_the_cheapest_node->index != 0)
+	{
+		if (am_the_cheapest_node->index <= b->size / 2)
+		{
+			if (am_the_cheapest_node->target_in_a->index <= a->size / 2 && am_the_cheapest_node->target_in_a->index != 0)
+				rr(a, b);
+			else
+				rb(b);
+		}
+		else
+		{
+			if (am_the_cheapest_node->target_in_a->index > a->size / 2)
+				rrr(a, b);
+			else
+				rrb(b);
+		}
+	}
+}
+
+void	turk_sort(t_stack *a)
+{
+	int		target_int;
+	t_stack	*b;
+	t_node	*am_the_cheapest_node;
+
+	b = init_turk_sort(a);
+	if (!b)
+		return ;
+	return ;
+	while (b->size)
+	{
+		target_node_finder(a, b);
+		get_cost(a);
+		get_cost(b);
+		get_total_cost(b);
+		am_the_cheapest_node = find_cheapest_cost_in_total(b);
+		turk_sort_rotate_b(a, b, am_the_cheapest_node);
+		while (am_the_cheapest_node->target_in_a->index != 0)
+		{
+			if (am_the_cheapest_node->target_in_a->index <= a->size / 2)
+				ra(a);
+			else
+				rra(a);
+		}
+		pa(a, b);
+	}
+	finish_turk_sort(a, b);
 }
 
 bool	is_sorted(t_stack *a)
@@ -152,7 +168,7 @@ int	main(int ac, char *av[])
 		return 0;
 	}
 	turk_sort(a);
-	//print_stack(a);
+	print_stack(a);
 	free_stack(a);
 	return 0;
 }
