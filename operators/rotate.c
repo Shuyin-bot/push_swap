@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:41:41 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/02 21:49:31 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 17:31:23 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	rb_base(t_stack *b, bool print)
 
 	if (b && b->top && b->top->next != 0)
 	{
-		node = pop_bot(b);
-		push_top(b, node);
+		node = pop_top(b);
+		push_bot(b, node);
 		if (print)
 		{
 			printf("rb\n");

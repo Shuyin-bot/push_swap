@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:23:21 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/02 21:47:50 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 17:37:29 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	rrb_base(t_stack *b, bool print)
 {
 	t_node	*first_node;
 
-	first_node = pop_top(b);
-	if (!first_node || first_node->next == NULL)
+	if (!b->top || b->top->next == NULL)
 	{
 		return ;
 	}
-	push_bot(b, first_node);
+	first_node = pop_bot(b);
+	push_top(b, first_node);
 	if (print)
 		printf("rrb\n");
 }

@@ -72,11 +72,17 @@ void	turk_sort(t_stack *a)
 		{
 			if (am_the_cheapest_node->index <= b->size / 2)
 			{
-				rb(b);
+				if (am_the_cheapest_node->target_in_a->index <= a->size / 2 && am_the_cheapest_node->target_in_a->index != 0)
+					rr(a, b);
+				else
+					rb(b);
 			}
 			else
 			{
-				rrb(b);
+				if (am_the_cheapest_node->target_in_a->index > a->size / 2)
+					rrr(a, b);
+				else
+					rrb(b);
 			}
 		}
 		while (am_the_cheapest_node->target_in_a->index != 0)

@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 19:50:51 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/02 19:55:15 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 17:26:52 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,13 +167,13 @@ void	get_cost(t_stack *b)
 		if (node->index <= b->size / 2)
 		{
 			cost = node->index;
-			node = node->next;
 		}
 		else
 		{
 			cost = b->size - node->index;
-			node = node->next;
 		}
+		node->cost = cost;
+			node = node->next;
 	}
 }
 
