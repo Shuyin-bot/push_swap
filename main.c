@@ -9,18 +9,39 @@ TODO:
 	[*] use operations to get cheapest node to the top
 	[*] use operations to get cheapest node's target_node to the top
 
-[ ]input validation
-[ ]memory cleanup
+[*]input validation
+[*]memory cleanup
 [ ]malloc error
 [ ]unallowed functions (printf etc..)
 [ ]norm & cleanups
 ([ ]testing of stack operations)
+ ('1 2 3' 4 5 6 argumet style?)
 */
 
 #include <push_swap.h>
 
-void	sort_3_or_less(t_stack *a);
-t_node	*find_smallest(t_stack *a);
+void	free_stack(t_stack *s)
+{
+	t_node *node;
+	t_node *previous;
+
+	if (!s)
+		return ;
+	if (!s->top)
+	{
+		free(s);
+		return ;
+	}
+	node = s->top;
+	while (node->next)
+	{
+		previous = node;
+		node = node->next;
+		free(previous);
+	}
+	free(node);
+	free(s);
+}
 
 void	turk_sort(t_stack *a)
 {
@@ -31,6 +52,11 @@ void	turk_sort(t_stack *a)
 	int		index_compare;
 
 	b = new_empty_stack();
+	if (!b)
+	{
+		printf("Error\n");
+		return ;
+	}
 	index_compare = 0;
 	while (a->size > 3)
 		pb(a, b);
@@ -77,6 +103,7 @@ void	turk_sort(t_stack *a)
 		while (smallest->index)
 			rra(a);
 	}
+	free_stack(b);
 }
 
 bool	is_sorted(t_stack *a)
@@ -85,9 +112,9 @@ bool	is_sorted(t_stack *a)
 	t_node	*node_compare;
 
 	node = a->top;
+	node_compare = node->next;
 	if (!node_compare)
 		return true;
-	node_compare = node->next;
 	while (node_compare && node->data < node_compare->data)
 	{
 		node = node->next;
@@ -103,12 +130,23 @@ int	main(int ac, char *av[])
 	t_stack *a;
 
 	a = init(ac, av);
-	if (has_error(ac, av, a)) {
+	if (!a)
+	{
 		printf("Error\n");
 		return 1;
 	}
+	if (has_error(ac, av, a)) {
+		printf("Error\n");
+		free_stack(a);
+		return 1;
+	}
 	if (is_sorted(a) == true)
+	{
+		free_stack(a);
 		return 0;
+	}
 	turk_sort(a);
 	//print_stack(a);
+	free_stack(a);
+	return 0;
 }

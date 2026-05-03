@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 15:26:42 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 17:03:28 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_stack	*new_empty_stack(void);
 t_stack	*init(int ac, char *av[]);
 
 //utility && test
+void	sort_3_or_less(t_stack *a);
 void	push_top(t_stack *stack, t_node *node);
 void	push_bot(t_stack *stack, t_node *node);
 t_node	*pop_top(t_stack *stack);
@@ -73,6 +74,6 @@ void	get_cost(t_stack *b);
 void	get_total_cost(t_stack *b);
 t_node	*find_cheapest_cost_in_total(t_stack *b);
 bool	has_error(int argc, char **argv, t_stack *a);
+void	free_stack(t_stack *s);
 
-//t_node	*target_node_finder(t_stack *a, t_stack *b);
 #endif

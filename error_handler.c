@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 12:03:28 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 15:30:38 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 16:50:17 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ bool valid_input(char *str)
 		return false;
 	else if (!negative && !valid_int_range_positive(str))
 		return false;
-		
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i++]))
@@ -94,6 +93,7 @@ bool valid_input(char *str)
 	return true;
 }
 
+// check each str arguement if has valid input or duplicate case
 bool	has_error(int argc, char **argv, t_stack *a)
 {
 	int i;
