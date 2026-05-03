@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 19:50:51 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 17:26:52 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 18:58:58 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,34 @@ void	update_size_index(t_stack *stack)
 	stack->size = cur_index;
 }
 
+void	sort_exactly_3(t_stack *a)
+{
+	if (a->top->data < a->top->next->next->data && a->top->next->data > a->top->next->next->data)
+	{
+		ra(a);
+		sa(a);
+		rra(a);
+		return ;
+	}
+	if (a->top->data > a->top->next->next->data && a->top->next->data < a->top->next->next->data)
+	{
+		ra(a);
+		return ;
+	}
+	if (a->top->data > a->top->next->data)
+		sa(a);
+	if (is_sorted(a))
+		return ;
+	if (a->top->next->next->data < a->top->data)
+		rra(a);
+	else
+		ra(a);
+}
+
 void	sort_3_or_less(t_stack *a)
 {
 	t_node	*node1;
 	t_node	*node2;
-	t_node	*node3;
 
 	node1 = a->top;
 	node2 = node1->next;
@@ -47,42 +70,7 @@ void	sort_3_or_less(t_stack *a)
 		return ;
 	}
 	else
-	{
-		node3 = node2->next;
-		while (node1->data > node2->data)
-		{
-			sa(a);
-			if (node1->data > node3->data)
-			{
-				ra(a);
-				return ;
-			}
-			if (node2->data > node3->data)
-			{
-				ra(a);
-				sa(a);
-				return ;
-			}
-			else
-				return ;
-		}
-		while (node1->data <= node2->data)
-		{
-			if (node1->data > node3->data)
-			{
-				ra(a);
-				return ;
-			}
-			if (node2->data > node3->data)
-			{
-				ra(a);
-				sa(a);
-				return ;
-			}
-			else
-				return ;
-		}
-	}
+		sort_exactly_3(a);
 }
 
 /*
