@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 12:03:28 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 16:50:17 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:24:56 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,87 +24,87 @@ bool	has_duplicates(t_stack *stack)
 		while (node)
 		{
 			if (node->data == node_pick->data)
-				return true;
+				return (true);
 			node = node->next;
 		}
 		node_pick = node_pick->next;
 	}
-	return false;
+	return (false);
 }
 
-bool valid_int_range_negative(char *str)
+bool	valid_int_range_negative(char *str)
 {
 	const char	max[] = "2147483648";
-	int i;
-	
+	int			i;
+
 	if (ft_strlen(max) > ft_strlen(str))
-		return true;
+		return (true);
 	if (ft_strlen(max) < ft_strlen(str))
-		return false;
+		return (false);
 	i = 0;
 	while (max[i] && max[i] == str[i])
 		i++;
 	if (!max[i])
-		return true;
+		return (true);
 	if (max[i] < str[i])
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
-bool valid_int_range_positive(char *str)
+bool	valid_int_range_positive(char *str)
 {
 	const char	max[] = "2147483647";
-	int i;
-	
+	int			i;
+
 	if (ft_strlen(max) > ft_strlen(str))
-		return true;
+		return (true);
 	if (ft_strlen(max) < ft_strlen(str))
-		return false;
+		return (false);
 	i = 0;
 	while (max[i] && max[i] == str[i])
 		i++;
 	if (!max[i])
-		return true;
+		return (true);
 	if (max[i] < str[i])
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
-bool valid_input(char *str)
+bool	valid_input(char *str)
 {
-	int	i;
-	bool negative;
+	int		i;
+	bool	negative;
 
 	if (!str || !str[0])
-		return true;
+		return (true);
 	i = 0;
 	negative = *str == '-';
 	if (*str == '-' || *str == '+')
 		str++;
 	if (negative && !valid_int_range_negative(str))
-		return false;
+		return (false);
 	else if (!negative && !valid_int_range_positive(str))
-		return false;
+		return (false);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i++]))
-			return false;
+			return (false);
 	}
-	return true;
+	return (true);
 }
 
 // check each str arguement if has valid input or duplicate case
 bool	has_error(int argc, char **argv, t_stack *a)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
 		if (!valid_input(argv[i++]))
-			return true;	
+			return (true);
 	}
 	if (has_duplicates(a))
-		return true;
-	return false;
+		return (true);
+	return (false);
 }

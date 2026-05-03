@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:26:23 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:31:27 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:48:45 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sa(t_stack *a)
 	temp1 = list->data;
 	list->data = list->next->data;
 	list->next->data = temp1;
-	printf("sa\n");
+	ft_printf("sa\n");
 	update_size_index(a);
 }
 
@@ -46,7 +46,7 @@ void	sb(t_stack *b)
 	temp1 = list->data;
 	list->data = list->next->data;
 	list->next->data = temp1;
-	printf("sb\n");
+	ft_printf("sb\n");
 	update_size_index(b);
 }
 
@@ -54,29 +54,27 @@ void	sb(t_stack *b)
 void	ss(t_stack *a, t_stack *b)
 {
 	t_node	*list_a;
-	t_node	*list_b;
 	int		temp;
 	bool	swap_a;
 	bool	swap_b;
 
 	list_a = a->top;
-	list_b = b->top;
 	swap_a = list_a && list_a->next != NULL;
-	swap_b = list_b && list_b->next != NULL;
+	swap_b = b->top && b->top->next != NULL;
 	if (swap_a)
 	{
-		temp = list_a->data;	
+		temp = list_a->data;
 		list_a->data = list_a->next->data;
 		list_a->next->data = temp;
 	}
 	if (swap_b)
 	{
-		temp = list_b->data;	
-		list_b->data = list_b->next->data;
-		list_b->next->data = temp;
+		temp = b->top->data;
+		b->top->data = b->top->next->data;
+		b->top->next->data = temp;
 	}
 	if (swap_a || swap_b)
-		printf("ss\n");
+		ft_printf("ss\n");
 	update_size_index(a);
 	update_size_index(b);
 }

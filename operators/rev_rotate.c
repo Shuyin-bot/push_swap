@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:23:21 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 17:37:29 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:48:30 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ void	rra(t_stack *a)
 	t_node	*first_node;
 
 	first_node = pop_bot(a);
-	if (!first_node){
+	if (!first_node)
 		return ;
-	}
 	push_top(a, first_node);
 	update_size_index(a);
-	printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	rrb_base(t_stack *b, bool print)
@@ -39,7 +38,7 @@ void	rrb_base(t_stack *b, bool print)
 	first_node = pop_bot(b);
 	push_top(b, first_node);
 	if (print)
-		printf("rrb\n");
+		ft_printf("rrb\n");
 }
 
 // rrb (reverse rotate b): Shift down all elements of stack b by 1.
@@ -57,7 +56,7 @@ void	rrr(t_stack *a, t_stack *b)
 		return ;
 	rrb_base(a, false);
 	rrb_base(b, false);
-	printf("rrr\n");
+	ft_printf("rrr\n");
 	update_size_index(a);
 	update_size_index(b);
 }

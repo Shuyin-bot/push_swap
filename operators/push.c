@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:37:54 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/04/28 05:37:55 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:48:26 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	pa(t_stack *a, t_stack *b)
 	push_top(a, node);
 	update_size_index(a);
 	update_size_index(b);
-	printf("pa\n");
+	ft_printf("pa\n");
 }
 
 // pb (push b): Take first element at the top of a and put it at the top of b->
@@ -39,5 +39,5 @@ void	pb(t_stack *a, t_stack *b)
 	push_top(b, node);
 	update_size_index(a);
 	update_size_index(b);
-	printf("pb\n");
+	ft_printf("pb\n");
 }

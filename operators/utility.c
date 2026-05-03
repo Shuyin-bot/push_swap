@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 05:38:22 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/02 19:50:37 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:21:14 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	push_top(t_stack *stack, t_node *node)
 {
 	t_node	*old_top;
-	//t_node *list;	
-	//list = node;
-	//stack->top = list;
+
 	old_top = stack->top;
 	stack->top = node;
 	stack->top->next = old_top;

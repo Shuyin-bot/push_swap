@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:41:41 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 17:31:23 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:48:39 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ra(t_stack *a)
 		node = pop_top(a);
 		push_bot(a, node);
 		update_size_index(a);
-		printf("ra\n");
+		ft_printf("ra\n");
 	}
 	return ;
 }
@@ -38,7 +38,7 @@ void	rb_base(t_stack *b, bool print)
 		push_bot(b, node);
 		if (print)
 		{
-			printf("rb\n");
+			ft_printf("rb\n");
 		}
 		update_size_index(b);
 	}
@@ -60,5 +60,5 @@ void	rr(t_stack *a, t_stack *b)
 	rb_base(b, 0);
 	update_size_index(a);
 	update_size_index(b);
-	printf("rr\n");
+	ft_printf("rr\n");
 }

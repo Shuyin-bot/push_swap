@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:32:35 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 16:53:28 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:09:43 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	*new_empty_stack(void)
 
 	stack = ft_calloc(1, sizeof(t_stack));
 	if (!stack)
-		return NULL;
+		return (NULL);
 	update_size_index(stack);
 	return (stack);
 }
@@ -30,10 +30,10 @@ static bool	push_int(t_stack *s, int i)
 
 	node = ft_calloc(1, sizeof(t_node));
 	if (!node)
-		return false;
+		return (false);
 	node->data = i;
 	push_bot(s, node);
-	return true;
+	return (true);
 }
 
 t_stack	*init(int ac, char *av[])
@@ -45,14 +45,14 @@ t_stack	*init(int ac, char *av[])
 	i = 1;
 	a = new_empty_stack();
 	if (!a)
-		return NULL;
+		return (NULL);
 	while (i < ac)
 	{
 		val = ft_atoi(av[i]);
 		if (push_int(a, val) == false)
 		{
 			free_stack(a);
-			return NULL;
+			return (NULL);
 		}
 		i++;
 	}

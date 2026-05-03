@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 18:00:32 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/03 19:51:17 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define PUSH_SWAP_H
 
 # include <libft/libft.h>
+# include <printf/ft_printf.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdint.h>
-#include <assert.h> //
 
 typedef struct s_node	t_node;
 
@@ -55,6 +54,9 @@ void	rrr(t_stack *a, t_stack *b);
 //init
 t_stack	*new_empty_stack(void);
 t_stack	*init(int ac, char *av[]);
+
+//sort
+void	turk_sort(t_stack *a);
 
 //utility && test
 void	sort_3_or_less(t_stack *a);
