@@ -79,11 +79,36 @@ void	turk_sort(t_stack *a)
 	}
 }
 
+bool	is_sorted(t_stack *a)
+{
+	t_node	*node;
+	t_node	*node_compare;
+
+	node = a->top;
+	if (!node_compare)
+		return true;
+	node_compare = node->next;
+	while (node_compare && node->data < node_compare->data)
+	{
+		node = node->next;
+		node_compare = node->next;
+	}
+	if (!node_compare)
+		return true;
+	return false;
+}
+
 int	main(int ac, char *av[])
 {
 	t_stack *a;
 
 	a = init(ac, av);
+	if (has_error(ac, av, a)) {
+		printf("Error\n");
+		return 1;
+	}
+	if (is_sorted(a) == true)
+		return 0;
 	turk_sort(a);
 	//print_stack(a);
 }

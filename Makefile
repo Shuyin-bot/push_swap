@@ -21,7 +21,8 @@ SRC =	main.c \
 		operators/rotate.c \
 		operators/swap.c \
 		operators/utility.c \
-		utility.c
+		utility.c \
+		error_handler.c
 
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
