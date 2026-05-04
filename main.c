@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 19:29:58 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 19:55:08 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/04 04:30:46 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	main(int ac, char *av[])
 		return (0);
 	}
 	turk_sort(a);
-	print_stack(a);
 	free_stack(a);
 	return (0);
 }
