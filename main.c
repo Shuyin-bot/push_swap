@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 19:29:58 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/04 04:30:46 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/04 08:38:07 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,58 +24,23 @@ TODO:
 [*]input validation
 [*]memory cleanup
 [*]malloc error
-[*]norm & cleanups
-[*]unallowed functions (printf etc..)
-[ ]remove test.c
-[ ]import commmit history
+[ ]norm & cleanups
+	[*]norm
+	[*]unallowed functions (printf etc..)
+	[*]split fuctions(<= 25 lines)
+	[ ]<=5 functions in one file
+	[ ]makefile 打印清洁🧹
+
+[ ]add function comments && 理顺每个file功能，
+ 	主线逻辑是否连贯(是否能用几句话解释清楚sort逻辑)
+[ ]理解更新后的sort3
 [ ]add README
 [ ]prepare for eval
-([ ]testing of stack operations)
+[ ]remove test.c && checker_OS && make fclean etc.
+[ ]import commmit history
 */
 
 #include <push_swap.h>
-
-void	free_stack(t_stack *s)
-{
-	t_node	*node;
-	t_node	*previous;
-
-	if (!s)
-		return ;
-	if (!s->top)
-	{
-		free(s);
-		return ;
-	}
-	node = s->top;
-	while (node->next)
-	{
-		previous = node;
-		node = node->next;
-		free(previous);
-	}
-	free(node);
-	free(s);
-}
-
-bool	is_sorted(t_stack *a)
-{
-	t_node	*node;
-	t_node	*node_compare;
-
-	node = a->top;
-	node_compare = node->next;
-	if (!node_compare)
-		return (true);
-	while (node_compare && node->data < node_compare->data)
-	{
-		node = node->next;
-		node_compare = node->next;
-	}
-	if (!node_compare)
-		return (true);
-	return (false);
-}
 
 int	main(int ac, char *av[])
 {

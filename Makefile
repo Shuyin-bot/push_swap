@@ -16,7 +16,6 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 # **************************************************************************** #
 
 SRC =	main.c \
-		init.c \
 		operators/push.c \
 		operators/rev_rotate.c \
 		operators/rotate.c \
@@ -24,6 +23,7 @@ SRC =	main.c \
 		operators/utility.c \
 		utility1.c \
 		utility2.c \
+		utility3.c \
 		sort.c \
 		error_handler.c
 

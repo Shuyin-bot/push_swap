@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 19:51:17 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/04 08:32:40 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,32 @@ void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *a, t_stack *b);
 
-//init
-t_stack	*new_empty_stack(void);
-t_stack	*init(int ac, char *av[]);
-
 //sort
 void	turk_sort(t_stack *a);
 
-//utility && test
+//utility3
+t_stack	*new_empty_stack(void);
+t_stack	*init(int ac, char *av[]);
+void	free_stack(t_stack *s);
+bool	is_sorted(t_stack *a);
+
+//utility1
+void	update_size_index(t_stack *stack);
 void	sort_3_or_less(t_stack *a);
+void	target_node_finder(t_stack *a, t_stack *b);
+
+
+//utility2
 void	push_top(t_stack *stack, t_node *node);
 void	push_bot(t_stack *stack, t_node *node);
 t_node	*pop_top(t_stack *stack);
 t_node	*pop_bot(t_stack *stack);
-void	update_size_index(t_stack *stack);
 void	rb_base(t_stack *b, bool print);
 void	rrb_base(t_stack *b, bool print);
 void	print_stack(t_stack *stack);
 void	print_stack_with_target_node(t_stack *b);
 t_node	*find_smallest(t_stack *a);
 t_node	*find_smallest_bigger(t_stack *a, int val);
-void	target_node_finder(t_stack *a, t_stack *b);
 void	get_cost(t_stack *b);
 void	get_total_cost(t_stack *b);
 t_node	*find_cheapest_cost_in_total(t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 19:50:51 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 19:35:11 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/04 05:39:38 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	update_size_index(t_stack *stack)
 	stack->size = cur_index;
 }
 
-void	sort_exactly_3(t_stack *a)
+static void	sort_exactly_3(t_stack *a)
 {
 	if (a->top->data < a->top->next->next->data
 		&& a->top->next->data > a->top->next->next->data)

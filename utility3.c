@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:32:35 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 19:09:43 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/04 05:57:32 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,46 @@ t_stack	*init(int ac, char *av[])
 	}
 	update_size_index(a);
 	return (a);
+}
+
+void	free_stack(t_stack *s)
+{
+	t_node	*node;
+	t_node	*previous;
+
+	if (!s)
+		return ;
+	if (!s->top)
+	{
+		free(s);
+		return ;
+	}
+	node = s->top;
+	while (node->next)
+	{
+		previous = node;
+		node = node->next;
+		free(previous);
+	}
+	free(node);
+	free(s);
+}
+
+bool	is_sorted(t_stack *a)
+{
+	t_node	*node;
+	t_node	*node_compare;
+
+	node = a->top;
+	node_compare = node->next;
+	if (!node_compare)
+		return (true);
+	while (node_compare && node->data < node_compare->data)
+	{
+		node = node->next;
+		node_compare = node->next;
+	}
+	if (!node_compare)
+		return (true);
+	return (false);
 }
