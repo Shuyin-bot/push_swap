@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 19:29:58 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/04 08:38:07 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/10 14:39:59 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,15 @@ TODO:
 [*]input validation
 [*]memory cleanup
 [*]malloc error
-[ ]norm & cleanups
+[*]norm & cleanups
 	[*]norm
 	[*]unallowed functions (printf etc..)
 	[*]split fuctions(<= 25 lines)
-	[ ]<=5 functions in one file
-	[ ]makefile 打印清洁🧹
-
-[ ]add function comments && 理顺每个file功能，
- 	主线逻辑是否连贯(是否能用几句话解释清楚sort逻辑)
-[ ]理解更新后的sort3
-[ ]add README
-[ ]prepare for eval
+	[*]makefile 打印清洁🧹
+[*]import commmit history
+[*]add README
 [ ]remove test.c && checker_OS && make fclean etc.
-[ ]import commmit history
+[ ]add function comments
 */
 
 #include <push_swap.h>

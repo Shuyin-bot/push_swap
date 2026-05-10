@@ -91,19 +91,14 @@ t_node	*find_cheapest_cost_in_total(t_stack *b)
 	return (cheapest_node);
 }
 
-void	print_stack(t_stack *stack)
+void	free_strs(char **strs)
 {
-	t_node	*cur;
+	int	i;
 
-	cur = stack->top;
-	ft_printf("{");
-	while (cur)
-	{
-		if (cur->next)
-			ft_printf("%d, ", cur->data);
-		else
-			ft_printf("%d", cur->data);
-		cur = cur->next;
-	}
-	ft_printf("}\n");
+	if (!strs)
+		return ;
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
 }

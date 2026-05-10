@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqian <sqian@student.42.fr>                +#+  +:+       +#+         #
+#    By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/16 00:29:40 by sqian             #+#    #+#              #
-#    Updated: 2025/12/04 03:16:19 by sqian            ###   ########.fr        #
+#    Updated: 2026/05/10 14:37:36 by qianshuyin       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ DEBUG_OBJ = $(SRC:$(SRC_DIR)/%.c=$(DEBUG_DIR)/%.debug.o)
 
 NC		= \033[0m
 RED		= \033[0;31m
-GREEN	= \033[1;32m
+GREEN	= \033[0;32m
 YELLOW	= \033[0;33m
 BLUE	= \033[0;34m
 PURPLE	= \033[0;35m
@@ -110,7 +110,7 @@ all: $(NAME)
 # Normal Objects
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
-	@printf "$(CYAN) ✨ Lft compiled Sucessfully! $(NC)\n"
+#	@printf "$(CYAN) ✨ Lft compiled Sucessfully! $(NC)\n"
 # rule to make the lib
 #r → replace: 替换库里同名的对象文件
 #c → create: 如果库不存在就创建
@@ -137,14 +137,15 @@ debug: $(DEBUG_OBJ)
 
 # Cleaning
 clean:
-	@printf "$(RED) 🧹 Cleaning lft o-files...$(NC)\n"
+#	@printf "$(RED) 🧹 Cleaning lft o-files..$(NC)\n"#
 	@rm -rf $(OBJ) $(DEBUG_OBJ) $(BOBJ) $(OBJ_DIR)
-	@printf "$(GREEN) ✓ Lft Cleaning complete!$(NC)\n"
+#	@printf "$(GREEN) ✓ Lft Cleaning complete!$(NC)\n"
 
-fclean: clean
-	@printf "$(RED)🗑️ Removing lft library...$(NC)\n"
+fclean:
+#	@printf "$(RED)🗑️ Removing lft library...$(NC)\n"
+	@rm -rf $(OBJ) $(DEBUG_OBJ) $(BOBJ) $(OBJ_DIR)
 	@rm -rf $(NAME)
-	@printf "$(GREEN)✓ Lft library cleaned!$(NC)\n"
+#	@printf "$(GREEN)🗑️ Lft library cleaned!$(NC)\n"
 
 re: fclean all
 

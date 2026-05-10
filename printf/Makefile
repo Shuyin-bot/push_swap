@@ -77,18 +77,21 @@ debug: re
 #	libft/libft.a -o test
 
 clean:
-	@printf "$(YELLOW)🧹 Cleaning printf o-files...$(NC)\n"
-	@rm -rf $(OFILES) $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@make -C libft clean
-	@printf "$(GREEN)✓ Printf Cleaning complete!$(NC)\n"
 
-fclean: clean
-	@printf "$(RED)🗡️  Killing printf library...$(NC)\n"
+fclean:
+	@rm -rf $(OFILES) $(OBJ_DIR)
 	@rm -rf $(NAME)
 	@make -C libft fclean
-	@printf "$(GREEN)✓ Full printf cleaning complete!$(NC)\n"
+	@printf "$(GREEN) 🗑️  Printf everything cleaned!$(NC)\n"
 
-re: fclean all
+re:
+	@rm -rf $(OBJ_DIR)
+	@rm -rf $(NAME)
+	@make -C libft fclean
+	@$(MAKE) -C fclean
+
 
 push:
 	git add .

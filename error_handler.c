@@ -32,30 +32,15 @@ bool	has_duplicates(t_stack *stack)
 	return (false);
 }
 
-bool	valid_int_range_negative(char *str)
+static bool	valid_int_range(char *str, bool negative)
 {
-	const char	max[] = "2147483648";
+	const char	*max;
 	int			i;
 
-	if (ft_strlen(max) > ft_strlen(str))
-		return (true);
-	if (ft_strlen(max) < ft_strlen(str))
-		return (false);
-	i = 0;
-	while (max[i] && max[i] == str[i])
-		i++;
-	if (!max[i])
-		return (true);
-	if (max[i] < str[i])
-		return (false);
-	return (true);
-}
-
-bool	valid_int_range_positive(char *str)
-{
-	const char	max[] = "2147483647";
-	int			i;
-
+	if (negative)
+		max = "2147483648";
+	else
+		max = "2147483647";
 	if (ft_strlen(max) > ft_strlen(str))
 		return (true);
 	if (ft_strlen(max) < ft_strlen(str))
@@ -81,9 +66,7 @@ bool	valid_input(char *str)
 	negative = *str == '-';
 	if (*str == '-' || *str == '+')
 		str++;
-	if (negative && !valid_int_range_negative(str))
-		return (false);
-	else if (!negative && !valid_int_range_positive(str))
+	if (!valid_int_range(str, negative))
 		return (false);
 	while (str[i])
 	{
@@ -93,18 +76,39 @@ bool	valid_input(char *str)
 	return (true);
 }
 
-// check each str arguement if has valid input or duplicate case
+static bool	has_error_str(char *str)
+{
+	char	**sp;
+	int		i;
+
+	sp = ft_split(str, ' ');
+	if (!sp)
+		return (true);
+	i = 0;
+	while (sp[i])
+	{
+		if (!valid_input(sp[i]))
+		{
+			free_strs(sp);
+			return (true);
+		}
+		i++;
+	}
+	free_strs(sp);
+	return (false);
+}
+
 bool	has_error(int argc, char **argv, t_stack *a)
 {
 	int	i;
 
+	if (argc == 2)
+		return (has_error_str(argv[1]) || has_duplicates(a));
 	i = 1;
 	while (i < argc)
 	{
 		if (!valid_input(argv[i++]))
 			return (true);
 	}
-	if (has_duplicates(a))
-		return (true);
-	return (false);
+	return (has_duplicates(a));
 }

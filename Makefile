@@ -35,7 +35,7 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 NC		= \033[0m
 RED		= \033[0;31m
-GREEN	= \033[1;32m
+GREEN	= \033[0;32m
 CYAN	= \033[0;36m
 
 # **************************************************************************** #
@@ -52,25 +52,23 @@ $(PRINTF):
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -L$(PRINTF_DIR) -lft -lftprintf -o $(NAME)
-	@printf "$(CYAN) ✨ Compiled Successfully! $(NC)\n"
+	@printf "$(CYAN) ✨ Push_Swap Compiled Successfully! $(NC)\n"
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@printf "$(RED) 🧹 Cleaning o-files...$(NC)\n"
 	@rm -rf $(OBJ_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(PRINTF_DIR) clean
-	@printf "$(GREEN) ✓ Clean complete!$(NC)\n"
 
-fclean: clean
-	@printf "$(RED)🗑️  Removing binary & o-files...$(NC)\n"
+fclean:
+	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
-	@printf "$(GREEN)✓ Everything cleaned!$(NC)\n"
+	@printf "$(GREEN) 🗑️  Push_Swap everything cleaned!$(NC)\n"
 
 re: fclean all
 
