@@ -90,23 +90,6 @@ char	**ft_split(char const *s, char c)
 // ft_split() 负责 一次 malloc（分配指针数组）
 // ft_fill_words() 负责 很多次 malloc（每个子字符串）
 
-void	print_split(char **r)
-{
-	int	i;
-
-	if (!r)
-	{
-		printf("(null)\n");
-		return ;
-	}
-	i = 0;
-	while (r[i])
-	{
-		printf("[%d] \"%s\"\n", i, r[i]);
-		i++;
-	}
-}
-
 // int	main(void)
 // {
 // 	char	*s1;

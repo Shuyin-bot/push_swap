@@ -62,27 +62,28 @@ t_stack	*init(int ac, char *av[]);
 t_stack	*new_empty_stack(void);
 void	update_size_index(t_stack *stack);
 
+//error_handler
+bool	has_duplicates(t_stack *stack);
+bool	valid_input(char *str);
+bool	has_error(int argc, char **argv, t_stack *a);
+
 //sort
 void	turk_sort(t_stack *a);
 
 //utility1
-void	free_stack(t_stack *s);
-
 t_node	*find_smallest_bigger(t_stack *a, int val);
 void	get_cost(t_stack *b);
 void	get_total_cost(t_stack *b);
 t_node	*find_cheapest_cost_in_total(t_stack *b);
 void	free_strs(char **strs);
 
-//utility3
+//utility2
 bool	is_sorted(t_stack *a);
 void	sort_3_or_less(t_stack *a);
 void	target_node_finder(t_stack *a, t_stack *b);
 t_node	*find_smallest(t_stack *a);
 
-//error_handler
-bool	has_duplicates(t_stack *stack);
-bool	valid_input(char *str);
-bool	has_error(int argc, char **argv, t_stack *a);
+//utility3
+void	free_stack(t_stack *s);
 
 #endif
