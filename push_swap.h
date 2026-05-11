@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:38:39 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/10 14:44:31 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/10 20:01:04 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *a, t_stack *b);
 
+//operation utility
+void	push_top(t_stack *stack, t_node *node);
+void	push_bot(t_stack *stack, t_node *node);
+t_node	*pop_top(t_stack *stack);
+t_node	*pop_bot(t_stack *stack);
+
 //sort
 void	turk_sort(t_stack *a);
 
@@ -60,13 +66,6 @@ t_stack	*new_empty_stack(void);
 void	update_size_index(t_stack *stack);
 void	free_stack(t_stack *s);
 
-//utility2
-void	push_top(t_stack *stack, t_node *node);
-void	push_bot(t_stack *stack, t_node *node);
-t_node	*pop_top(t_stack *stack);
-t_node	*pop_bot(t_stack *stack);
-void	rb_base(t_stack *b, bool print);
-void	rrb_base(t_stack *b, bool print);
 t_node	*find_smallest_bigger(t_stack *a, int val);
 void	get_cost(t_stack *b);
 void	get_total_cost(t_stack *b);

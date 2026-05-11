@@ -6,7 +6,7 @@
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 14:41:41 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/03 19:48:39 by qianshuyin       ###   ########.fr       */
+/*   Updated: 2026/05/10 20:01:04 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ra(t_stack *a)
 	return ;
 }
 
-void	rb_base(t_stack *b, bool print)
+static void	rb_base(t_stack *b, bool print)
 {
 	t_node	*node;
 
