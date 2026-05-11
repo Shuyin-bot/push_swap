@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS =  -I. -g -fsanitize=address -Wall -Werror -Wextra
+CFLAGS =  -I. -g -Wall -Werror -Wextra
 
 OBJ_DIR = obj
 
@@ -21,6 +21,7 @@ SRC =	main.c \
 		operators/rotate.c \
 		operators/swap.c \
 		operators/utility.c \
+		init.c \
 		utility1.c \
 		utility2.c \
 		utility3.c \

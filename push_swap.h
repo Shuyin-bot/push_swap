@@ -57,13 +57,15 @@ void	push_bot(t_stack *stack, t_node *node);
 t_node	*pop_top(t_stack *stack);
 t_node	*pop_bot(t_stack *stack);
 
+//init
+t_stack	*init(int ac, char *av[]);
+t_stack	*new_empty_stack(void);
+void	update_size_index(t_stack *stack);
+
 //sort
 void	turk_sort(t_stack *a);
 
 //utility1
-t_stack	*init(int ac, char *av[]);
-t_stack	*new_empty_stack(void);
-void	update_size_index(t_stack *stack);
 void	free_stack(t_stack *s);
 
 t_node	*find_smallest_bigger(t_stack *a, int val);

@@ -1,129 +1,104 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utility1.c                                         :+:      :+:    :+:   */
+/*   utility2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qianshuyin <qianshuyin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 19:50:51 by qianshuyin        #+#    #+#             */
-/*   Updated: 2026/05/10 14:44:08 by qianshuyin       ###   ########.fr       */
+/*   Created: 2026/05/03 19:34:28 by qianshuyin        #+#    #+#             */
+/*   Updated: 2026/05/03 19:50:36 by qianshuyin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-// alloctates a node and pushes it on the stack with the given int
-static bool	push_int(t_stack *s, int i)
+t_node	*find_smallest_bigger(t_stack *a, int val)
 {
 	t_node	*node;
+	t_node	*min;
+	t_node	*empty;
 
-	node = ft_calloc(1, sizeof(t_node));
-	if (!node)
-		return (false);
-	node->data = i;
-	push_bot(s, node);
-	return (true);
-}
-
-static t_stack	*init_from_str(t_stack *a, char *str)
-{
-	char	**sp;
-	int		i;
-
-	sp = ft_split(str, ' ');
-	if (!sp)
-	{
-		free_stack(a);
+	node = a->top;
+	min = NULL;
+	empty = a->top;
+	while (empty && empty->data < val)
+		empty = empty->next;
+	if (!empty)
 		return (NULL);
-	}
-	i = 0;
-	while (sp[i])
+	while (node)
 	{
-		if (!push_int(a, ft_atoi(sp[i])))
+		if (node->data > val)
 		{
-			free_strs(sp);
-			free_stack(a);
-			return (NULL);
+			if (!min || node->data < min->data)
+				min = node;
 		}
-		i++;
-	}
-	free_strs(sp);
-	update_size_index(a);
-	return (a);
-}
-
-t_stack	*init(int ac, char *av[])
-{
-	int		i;
-	int		val;
-	t_stack	*a;
-
-	a = new_empty_stack();
-	if (!a)
-		return (NULL);
-	if (ac == 2)
-		return (init_from_str(a, av[1]));
-	i = 1;
-	while (i < ac)
-	{
-		val = ft_atoi(av[i]);
-		if (push_int(a, val) == false)
-		{
-			free_stack(a);
-			return (NULL);
-		}
-		i++;
-	}
-	update_size_index(a);
-	return (a);
-}
-
-t_stack	*new_empty_stack(void)
-{
-	t_stack	*stack;
-
-	stack = ft_calloc(1, sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	update_size_index(stack);
-	return (stack);
-}
-
-void	update_size_index(t_stack *stack)
-{
-	t_node	*node;
-	int		cur_index;
-
-	node = stack->top;
-	cur_index = 0;
-	while (stack && node)
-	{
-		node->index = cur_index;
-		node = node -> next;
-		cur_index++;
-	}
-	stack->size = cur_index;
-}
-
-void	free_stack(t_stack *s)
-{
-	t_node	*node;
-	t_node	*previous;
-
-	if (!s)
-		return ;
-	if (!s->top)
-	{
-		free(s);
-		return ;
-	}
-	node = s->top;
-	while (node->next)
-	{
-		previous = node;
 		node = node->next;
-		free(previous);
 	}
-	free(node);
-	free(s);
+	return (min);
+}
+
+// calculate the cost to get to the top of the stack
+void	get_cost(t_stack *b)
+{
+	int		cost;
+	t_node	*node;
+
+	node = b->top;
+	while (b && node)
+	{
+		if (node->index <= b->size / 2)
+		{
+			cost = node->index;
+		}
+		else
+		{
+			cost = b->size - node->index;
+		}
+		node->cost = cost;
+		node = node->next;
+	}
+}
+
+/* calculate the total cost (cost to get to the top of the stack and 
+	cost of the target note for each node in stack b to get to the top of 
+	the stack)
+*/
+void	get_total_cost(t_stack *b)
+{
+	t_node	*node;
+
+	node = b->top;
+	while (b && node)
+	{
+		node->total_cost = node->cost + node->target_in_a->cost;
+		node = node->next;
+	}
+}
+
+t_node	*find_cheapest_cost_in_total(t_stack *b)
+{
+	t_node	*node;
+	t_node	*cheapest_node;
+
+	node = b->top;
+	cheapest_node = b->top;
+	while (b && node)
+	{
+		if (node->total_cost < cheapest_node->total_cost)
+			cheapest_node = node;
+		node = node->next;
+	}
+	return (cheapest_node);
+}
+
+void	free_strs(char **strs)
+{
+	int	i;
+
+	if (!strs)
+		return ;
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
 }
