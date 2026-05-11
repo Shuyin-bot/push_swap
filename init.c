@@ -13,7 +13,7 @@
 #include <push_swap.h>
 
 static t_stack	*init_from_str(t_stack *a, char *str);
-static bool	push_int(t_stack *s, int i);
+static bool		push_int(t_stack *s, int i);
 
 t_stack	*init(int ac, char *av[])
 {
